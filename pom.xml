@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--
+      Parent (aggregator) POM for the Bank Liquidity Management System.
+      packaging=pom: this module builds nothing itself; it wires the modules together
+      and centralises versions. Spring Boot is declared here so every child inherits it.
+    -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>4.1.0</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.liquidity</groupId>
+    <artifactId>liquidity-sentinel-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>liquidity-sentinel-parent</name>
+    <description>Bank Liquidity Management System — learning build</description>
+
+    <properties>
+        <java.version>21</java.version>
+    </properties>
+
+    <!--
+      Build order is resolved from inter-module dependencies, not this list, but keeping
+      'events' first documents intent: it is the shared contract everything else imports.
+    -->
+    <modules>
+        <module>events</module>
+        <module>app</module>
+    </modules>
+
+</project>
