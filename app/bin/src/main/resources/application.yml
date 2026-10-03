@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: liquidity-sentinel
+
+  kafka:
+    # The broker started by compose.yml, advertised to host apps as localhost:9092.
+    bootstrap-servers: localhost:9092
+
+server:
+  port: 8080
+
+# We keep Kafka/Postgres/Redis config here as each step needs it. For Step 0 only the
+# broker address is set; producers/consumers/topics arrive in Step 1.

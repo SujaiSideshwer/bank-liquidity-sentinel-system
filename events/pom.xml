@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.liquidity</groupId>
+        <artifactId>liquidity-sentinel-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>events</artifactId>
+    <name>events</name>
+    <description>
+        Shared event contract: the POJOs/records every service serializes to and from Kafka.
+        Deliberately has NO Spring, NO Kafka, NO service logic — only plain Java types.
+        Keeping it dependency-free is what stops it silently becoming a shared "util" dumping
+        ground and keeps the module boundary honest for a later split into separate apps.
+    </description>
+
+    <!-- No dependencies on purpose. This is a contract, not a service. -->
+
+</project>

@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: liquidity-sentinel
+
+  kafka:
+    # The broker started by compose.yml, advertised to host apps as localhost:9092.
+    # The producer factory/template (serializers included) are defined explicitly in
+    # com.liquidity.app.config.KafkaConfig, which reads this bootstrap-servers value.
+    bootstrap-servers: localhost:9092
+
+server:
+  port: 8080
+
+# Consumer settings, Postgres, and Redis are added as later steps need them.

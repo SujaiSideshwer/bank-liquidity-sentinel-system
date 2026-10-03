@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.liquidity</groupId>
+        <artifactId>liquidity-sentinel-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>app</artifactId>
+    <name>app</name>
+    <description>
+        The modular monolith. Each service (simulator, aggregation, ledger, position, ...)
+        lives in its own package here and talks to the others ONLY through Kafka/Postgres/Redis
+        — never by calling another package's beans directly. That discipline is what lets any
+        package peel off into its own Spring Boot app later without rewiring.
+    </description>
+
+    <dependencies>
+        <!-- The shared event contract. This is the only cross-module Java dependency allowed. -->
+        <dependency>
+            <groupId>com.liquidity</groupId>
+            <artifactId>events</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Web (REST endpoints: scenario injection in Step 1, positions in Step 4). -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Kafka: producers/consumers, @KafkaListener, KafkaTemplate. -->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
